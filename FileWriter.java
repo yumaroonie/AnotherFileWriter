@@ -1,17 +1,21 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class FileWriter {
-    public String fileToString (String filename)
+    public String fileToString (String fileName) throws FileNotFoundException
     {
-        return new String(Files.readAllBytes(Paths.get(filename)));
+        Scanner scanner = new Scanner( new File(fileName) );
+        String myString = scanner.useDelimiter("\\A").next();
+        scanner.close();
+        return myString;
     }
 
-    public void stringToFile (String input, String filename)
+    public void stringToFile (String input, String fileName) throws FileNotFoundException
     {
-        PrintWriter out = new PrintWriter(filename);
-        out.println(input);
+        PrintWriter out = new PrintWriter(fileName);
+        out.print(input);
         out.close();
     }
 }
