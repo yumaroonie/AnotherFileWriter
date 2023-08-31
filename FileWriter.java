@@ -20,25 +20,9 @@ public class FileWriter {
         out.close();
     }
 
-    public int countCharacters(String fileName) {
+    public int countCharacters(String fileName) throws FileNotFoundException {
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
-            
-            int characterCount = 0;
-
-            while (bufferedReader.ready()) {
-                bufferedReader.read();
-                characterCount++;
-            }
-
-            bufferedReader.close();
-            return characterCount;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
+        String file = fileToString(fileName);
+        return file.length();
     }
-
 }
